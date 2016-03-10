@@ -29,13 +29,13 @@ jQuery(document).ready(function(){
        jQuery.ajax({  
          type: 'GET',  
          url: url,  
-         contentType: "application/json",  
-         dataType: 'jsonp',  
+         contentType: contentType,  
+         dataType: 'json',  
          data: {apikey:apikey},  
          crossDomain: true,  
          success: function(res) {  
            alert('success');
-            if(json['login']=='success')
+            if(res['login']=='success')
 			{
 				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
 			}  
