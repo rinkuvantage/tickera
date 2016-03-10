@@ -27,6 +27,7 @@ jQuery(document).ready(function(){
          contentType:contentType,    
          success:function(json)
          {
+		 	alert('test');
             if(json['login']=='success')
 			{
 				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
@@ -34,7 +35,7 @@ jQuery(document).ready(function(){
          },
          error:function(jqXHR,textStatus,errorThrown)
          {
-            //alert("You can not send Cross Domain AJAX requests: "+errorThrown);
+            alert("You can not send Cross Domain AJAX requests: "+errorThrown);
          }
         });
  
