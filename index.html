@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta charset="UTF-8">
 <title>Tickera App</title>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/validate.js"></script>
@@ -40,8 +40,8 @@ jQuery(document).ready(function(){
 				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+res['event_id'];
 			}  
          },  
-         error: function(e) {  
-           alert('error');  
+         error: function(response, d, a){
+            alert('resp='+response +', dd='+ d + ', aa='+a) ;  
          },  
          complete: function(data) {  
            alert('completed');  
