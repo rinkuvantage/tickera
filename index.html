@@ -14,9 +14,10 @@ jQuery(document).ready(function(){
  
     if(window.XDomainRequest)
         contentType = "text/plain";
- 
+ 	alert('test3');
     jQuery("#signin").click(function()
     {
+		alert('test1');
 		var siteurl=jQuery('#siteurl').val();
 		var apikey=jQuery('#apikey').val();
         jQuery.ajax({
