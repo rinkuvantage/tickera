@@ -8,8 +8,12 @@
 <script type="text/javascript">
 
 jQuery(document).ready(function(){
-	jQuery('#login').validate();
+
+	jQuery( document ).on( "mobileinit", function() {
+		// Make your jQuery Mobile framework configuration changes here!
 	
+		jQuery.mobile.allowCrossDomainPages = true;
+	});
 	var contentType ="application/x-www-form-urlencoded; charset=utf-8";
  
     if(window.XDomainRequest){contentType = "text/plain";}
@@ -20,7 +24,30 @@ jQuery(document).ready(function(){
 		var siteurl=jQuery('#siteurl').val();
 		var apikey=jQuery('#apikey').val();
 		//window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey;
-        jQuery.ajax({
+		var url = siteurl+'/wp-admin/admin-ajax.php';  
+   
+       jQuery.ajax({  
+         type: 'GET',  
+         url: url,  
+         contentType: "application/json",  
+         dataType: 'jsonp',  
+         data: {apikey:apikey},  
+         crossDomain: true,  
+         success: function(res) {  
+           alert('success');
+            if(json['login']=='success')
+			{
+				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
+			}  
+         },  
+         error: function(e) {  
+           alert(e.message);  
+         },  
+         complete: function(data) {  
+           alert(e.message);  
+         }  
+       });
+       /* jQuery.ajax({
          url: siteurl+'/wp-admin/admin-ajax.php',
 		 type: 'post',
          dataType:"json", 
@@ -37,7 +64,7 @@ jQuery(document).ready(function(){
          {
             alert("You can not send Cross Domain AJAX requests: "+errorThrown);
          }
-        });
+        });*/
  
     });
 });
