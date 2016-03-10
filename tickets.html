@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Tickera App</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/validate.js"></script>
+<script type="text/javascript">
+function gup( name, url ) {
+  if (!url) url = location.href;
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( url );
+  return results == null ? null : results[1];
+}
+jQuery(document).ready(function(){
+	jQuery('#login').validate();
+	var apikey=gup('apikey', window.location.href);
+	var siteurl=gup('siteurl', window.location.href);
+	var event_id=gup('event_id', window.location.href);
+	var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+    if(window.XDomainRequest)
+        contentType = "text/plain";
+    
+	jQuery.ajax({
+	 url: siteurl+'/wp-admin/admin-ajax.php',
+	 type: 'post',
+	 dataType:"json", 
+	 data: {apikey:apikey},  
+	 contentType:contentType,    
+	 success:function(json)
+	 {
+		if(json['login']=='fail')
+		{
+			window.location='index.html';
+		}
+		else(json['login']=='success')
+		{
+			jQuery.ajax({
+			 url: siteurl+'/wp-admin/admin-ajax.php',
+			 type: 'post',
+			 dataType:"json", 
+			 data: {event_id:event_id, checkininfo:1},
+			 contentType:contentType,    
+			 success:function(json)
+			 {
+				
+			 },
+			 error:function(jqXHR,textStatus,errorThrown)
+			 {
+				//alert("You can not send Cross Domain AJAX requests: "+errorThrown);
+			 }
+			});
+		}
+	 },
+	 error:function(jqXHR,textStatus,errorThrown)
+	 {
+		//alert("You can not send Cross Domain AJAX requests: "+errorThrown);
+	 }
+	});
+ 
+});
+</script>
+</head>
+
+<body>
+<form name="login" id="login">
+<table width="100%" border="1">
+  <tr>
+    <td>Website url</td>
+    <td><input type="text" name="siteurl" id="siteurl" class="url required" /></td>
+  </tr>
+  <tr>
+    <td>Api Key</td>
+    <td><input type="text" name="apikey" id="apikey" class="required" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="button" name="signin" id="signin" value="Sign In" /></td>
+  </tr>
+</table>
+
+</form>
+</body>
+</html>
