@@ -14,7 +14,6 @@ jQuery(document).ready(function(){
  
     if(window.XDomainRequest){contentType = "text/plain";}
 	jQuery.support.cors = true;
-	jQuery.mobile.allowCrossDomainPages = true;
     jQuery("#signin").click(function()
     {
 		
@@ -26,10 +25,9 @@ jQuery(document).ready(function(){
 		 type: 'post',
          dataType:"json", 
 		 data: {apikey:apikey},  
-         contentType:contentType,    
          success:function(json)
          {
-		 	alert(json['login']);
+		 	alert('success');
             if(json['login']=='success')
 			{
 				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
