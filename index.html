@@ -3,27 +3,10 @@
 <head>
 <title>Tickera App</title>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.jsonp-2.1.4.min.js"></script>
 <script type="text/javascript">
+
 jQuery(document).ready(function(){
-	jQuery('#your-tweets').append('<li>Loading Sam Croft\'s tweets');	
-	var siteurl=jQuery('#siteurl').val();
-	var apikey='wtseat';
-	//window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey;
-	var url = siteurl+'/wp-admin/admin-ajax.php';  	
-	jQuery.jsonp({
-		url: url,
-		callbackParameter: 'callback',
-		timeout: 25000,
-		success: function(data, status) {
-			alert('test');
-		},
-		error: function(){
-			jQuery('#your-tweets').append('<li>There was an error loading the feed');
-		}
-	});
-});
-jQuery(document).ready(function(){
+
 
 	jQuery( document ).on( "mobileinit", function() {
 		// Make your jQuery Mobile framework configuration changes here!
@@ -40,7 +23,7 @@ jQuery(document).ready(function(){
 		var siteurl=jQuery('#siteurl').val();
 		var apikey=jQuery('#apikey').val();
 		//window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey;
-		var url = siteurl+'/wp-admin/admin-ajax.php';  
+		var url = 'http://vantagewebtech.com/paypal/json.php';  
    
        jQuery.ajax({  
          type: 'GET',  
@@ -51,10 +34,7 @@ jQuery(document).ready(function(){
          crossDomain: true,  
          success: function(res) {  
            alert('success');
-            if(res['login']=='success')
-			{
-				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+res['event_id'];
-			}  
+             
          },  
          error: function(response, d, a){
             alert('resp='+response +', dd='+ d + ', aa='+a) ;  
