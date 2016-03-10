@@ -14,10 +14,8 @@ jQuery(document).ready(function(){
  
     if(window.XDomainRequest)
         contentType = "text/plain";
- 	alert('test3');
     jQuery("#signin").click(function()
     {
-		alert('test1');
 		var siteurl=jQuery('#siteurl').val();
 		var apikey=jQuery('#apikey').val();
         jQuery.ajax({
@@ -28,7 +26,7 @@ jQuery(document).ready(function(){
          contentType:contentType,    
          success:function(json)
          {
-		 	alert('test');
+		 	alert(json['login']);
             if(json['login']=='success')
 			{
 				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
