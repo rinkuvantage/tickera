@@ -37,7 +37,7 @@ jQuery(document).ready(function(){
            alert('success');
             if(res['login']=='success')
 			{
-				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
+				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+res['event_id'];
 			}  
          },  
          error: function(e) {  
