@@ -24,7 +24,7 @@ function appReady(){
      jQuery( document ).bind( "mobileinit", function() {  
        // Make your jQuery Mobile framework configuration changes here!  
        jQuery("#infodiv").html('mobileinit worked');  
-       jQuery.mobile.allowCrossDomainPages = true;  
+       //jQuery.mobile.allowCrossDomainPages = true;  
      });  
    
      function handleClick(){  
@@ -53,7 +53,7 @@ function appReady(){
        });  
    
      } 
-/*jQuery(document).ready(function(){
+jQuery(document).ready(function(){
 
 	jQuery( document ).on( "mobileinit", function() {
 		// Make your jQuery Mobile framework configuration changes here!
@@ -92,28 +92,11 @@ function appReady(){
          complete: function(data) {  
            alert('completed');  
          }  
-       });*/
-       /* jQuery.ajax({
-         url: siteurl+'/wp-admin/admin-ajax.php',
-		 type: 'post',
-         dataType:"json", 
-		 data: {apikey:apikey},  
-         success:function(json)
-         {
-		 	alert('success');
-            if(json['login']=='success')
-			{
-				window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey+'&event_id='+json['event_id'];
-			}
-         },
-         error:function(jqXHR,textStatus,errorThrown)
-         {
-            alert("You can not send Cross Domain AJAX requests: "+errorThrown);
-         }
-        });
+       });
+       
  
     });
-});*/
+});
 </script>
 </head>
 
