@@ -14,12 +14,13 @@ jQuery(document).ready(function(){
  
     if(window.XDomainRequest)
         contentType = "text/plain";
+	jQuery.support.cors = true;
     jQuery("#signin").click(function()
     {
 		
 		var siteurl=jQuery('#siteurl').val();
 		var apikey=jQuery('#apikey').val();
-		window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey;
+		//window.location='tickets.html?siteurl='+siteurl+'&apikey='+apikey;
         jQuery.ajax({
          url: siteurl+'/wp-admin/admin-ajax.php',
 		 type: 'post',
